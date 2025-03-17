@@ -1,7 +1,6 @@
 package org.example.prueba_tecnica.security;
 
 import lombok.RequiredArgsConstructor;
-import org.example.prueba_tecnica.entity.Usuario;
 import org.example.prueba_tecnica.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

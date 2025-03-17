@@ -15,5 +15,5 @@ public class MaterialDTO {
     private LocalDate fechaCompra;
     private LocalDate fechaVenta;
     private EstadoMaterial estado;
-    private String ciudadCodigo; // Se usará solo el código de la ciudad
+    private String ciudadNombre;
 }

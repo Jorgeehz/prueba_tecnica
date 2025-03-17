@@ -15,7 +15,7 @@ public class MaterialMapper {
         dto.setFechaCompra(material.getFechaCompra());
         dto.setFechaVenta(material.getFechaVenta());
         dto.setEstado(material.getEstado());
-        dto.setCiudadCodigo(material.getCiudad() != null ? material.getCiudad().getCodigo() : null);
+        dto.setCiudadNombre(material.getCiudad() !=null? material.getCiudad().getNombre(): null);
         return dto;
     }
 

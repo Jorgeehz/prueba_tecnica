@@ -68,7 +68,7 @@ public class MaterialService {
 
 
         // Buscar la ciudad asociada
-        Optional<Ciudad> ciudadOpt = ciudadRepository.findById(materialDTO.getCiudadCodigo());
+        Optional<Ciudad> ciudadOpt = ciudadRepository.findByNombre(materialDTO.getCiudadNombre());
         if (ciudadOpt.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ciudad no encontrada.");
         }
@@ -90,13 +90,13 @@ public class MaterialService {
         }
 
 
-        // Validar fechas
-        if (materialDTO.getFechaCompra().isAfter(materialDTO.getFechaVenta())) {
+        // Validar fechas solo si fechaVenta no es null
+        if (materialDTO.getFechaVenta() != null && materialDTO.getFechaCompra().isAfter(materialDTO.getFechaVenta())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha de compra no puede ser superior a la fecha de venta.");
         }
 
         // Validar la ciudad
-        Ciudad ciudad = ciudadRepository.findById(materialDTO.getCiudadCodigo())
+        Ciudad ciudad = ciudadRepository.findByNombre(materialDTO.getCiudadNombre())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ciudad no encontrada."));
 
 
