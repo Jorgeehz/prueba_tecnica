@@ -62,9 +62,10 @@ public class MaterialService {
     // Crear nuevo material
     public ResponseEntity<String> createMaterial(MaterialDTO materialDTO) {
         // Validar que la fecha de compra no sea mayor a la fecha de venta
-        if (materialDTO.getFechaCompra().isAfter(materialDTO.getFechaVenta())) {
+        if (materialDTO.getFechaVenta() != null && materialDTO.getFechaCompra().isAfter(materialDTO.getFechaVenta())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha de compra no puede ser mayor a la fecha de venta.");
         }
+
 
         // Buscar la ciudad asociada
         Optional<Ciudad> ciudadOpt = ciudadRepository.findById(materialDTO.getCiudadCodigo());
@@ -77,7 +78,7 @@ public class MaterialService {
         material.setCiudad(ciudadOpt.get());
 
         materialRepository.save(material);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Material creado exitosamente.");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // Actualizar material

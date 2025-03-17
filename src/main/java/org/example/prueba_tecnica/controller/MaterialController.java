@@ -28,8 +28,8 @@ public class MaterialController {
     }
 
     // Buscar materiales por tipo
-    @GetMapping("/tipo/{tipo}")
-    public ResponseEntity<List<MaterialDTO>> getMaterialsByTipo(@PathVariable String tipo) {
+    @GetMapping("/tipo")
+    public ResponseEntity<List<MaterialDTO>> getMaterialsByTipo(@RequestParam String tipo) {
         return ResponseEntity.ok(materialService.getMaterialsByTipo(tipo));
     }
 
