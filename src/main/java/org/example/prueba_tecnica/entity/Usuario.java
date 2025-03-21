@@ -1,6 +1,8 @@
 package org.example.prueba_tecnica.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,9 +20,12 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @Column(nullable = false, unique = true, length = 100)
+    @NotBlank (message = "El email es obligatorio")
+    @Email(message = "Debe ser un email válido")
     private String email;
 
     @Column(nullable = false)
+    @NotBlank (message = "La contraseña es obligatoria")
     private String password;
 
     @ManyToOne
